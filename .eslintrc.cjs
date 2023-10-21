@@ -23,7 +23,7 @@ module.exports = {
         'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
         'import/exports-last': 'error',
         'import/extensions': 'off',
-        'import/group-exports': 'error',
+        'import/group-exports': 'off',
         'import/namespace': ['error', { allowComputed: true }],
         'import/newline-after-import': 'error',
         'import/no-duplicates': 'error',
