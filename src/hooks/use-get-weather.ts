@@ -18,7 +18,7 @@ const useGetWeather = () => {
         setLoading(true);
         request({
             method: 'GET',
-            url: `http://api.weatherapi.com/v1/forecast.json?key=0f26f32448a24b37808130258232010&q=${city}&days=4&aqi=yes&alerts=no`,
+            url: `https://api.weatherapi.com/v1/forecast.json?key=0f26f32448a24b37808130258232010&q=${city}&days=4&aqi=yes&alerts=no`,
         }).then((response) => {
             setWeather(() => response.data);
         }).catch((error) => {
