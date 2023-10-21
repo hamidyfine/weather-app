@@ -52,6 +52,11 @@ export const weatherSlice = createSlice({
             if (!_history.includes(action.payload)) {
                 _history.push(action.payload);
                 localStorage.setItem('history', JSON.stringify(_history));
+            } else {
+                const _index = _history.indexOf(action.payload);
+                _history.splice(_index, 1);
+                _history.push(action.payload);
+                localStorage.setItem('history', JSON.stringify(_history));
             }
             state.city = action.payload;
         },

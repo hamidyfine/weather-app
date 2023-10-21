@@ -1,5 +1,5 @@
 import { ActionIcon, Button, Flex } from '@mantine/core';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Icon } from '..';
 
 interface IProps {
@@ -8,8 +8,14 @@ interface IProps {
 
 const HistoryList = ({ setHistoryCity }: IProps) => {
     const [history, setHistory] = useState<string[]>(JSON.parse(localStorage.getItem('history') || '[]'));
+    const [last_cities, setLastCities] = useState<string[]>([]);
 
-    const last3HistoryItem = history.slice(-3);
+    useEffect(() => {
+        /**
+         * Set the last 3 cities from the history
+         */
+        setLastCities(() => history.slice(-3));
+    }, [history]);
 
     const onHistoryItemDelete = (city: string) => {
         const newHistory = history.filter((c) => c !== city).filter(Boolean);
@@ -43,7 +49,7 @@ const HistoryList = ({ setHistoryCity }: IProps) => {
 
             {history && history.length > 0 && (
                 <ul className="m-0 p-0 list-none">
-                    {last3HistoryItem && last3HistoryItem.length > 0 && last3HistoryItem.reverse().map((city: string, index: number) => (
+                    {last_cities && last_cities.length > 0 && last_cities.reverse().map((city: string, index: number) => (
                         <li
                             key={index}
                             className="capitalize mb-2 cursor-pointer hover:border-blue-500 rounded-lg hover:text-blue-500 block p-2 text-xs font-semibold border border-solid border-gray-200"
