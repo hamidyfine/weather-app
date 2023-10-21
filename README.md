@@ -1,27 +1,46 @@
-# React + TypeScript + Vite
+# Weather Vibe - Weather Forecast App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Weather Vibe is a weather forecast app built with Vite, React, TypeScript, Redux, Tailwind CSS, and Mantine. It provides users with accurate weather information and a delightful user experience. With Weather Vibe, you can stay updated on the weather conditions and plan your activities accordingly.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get started with Weather Vibe, follow these simple steps:
 
-## Expanding the ESLint configuration
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/hamidyfine/weather-app
+   cd weather-vibe
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. **Install dependencies:**
+   ```sh
+   yarn
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+## Usage
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+Once you have installed the dependencies, you can run the app using the following commands:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+1. **Start the development server:**
+   ```sh
+   yarn dev
+   ```
+
+   This command will start the development server and open the Weather Vibe app in your default web browser. You can see the real-time weather information based on your location or the location you search for.
+
+## Stack
+
+Weather Vibe is built using the following technologies:
+
+- **Vite:** A fast build tool that significantly improves the frontend development experience.
+- **React:** A popular JavaScript library for building user interfaces.
+- **TypeScript:** A typed superset of JavaScript that enhances the development experience by providing static types.
+- **Redux:** A state management library for managing the application state.
+- **Tailwind CSS:** A utility-first CSS framework that makes styling and designing the app easier and more efficient.
+- **Mantine:** A modern React component library that provides high-quality components and hooks for building responsive and accessible web applications.
+
+## Features
+
+- **Location-based Forecast:** Get accurate weather forecasts for your current location or any other location you search for.
+- **User-friendly Interface:** The app features an intuitive and user-friendly interface, making it easy for users to access weather information.
+- **Responsive Design:** Weather Vibe is designed to work seamlessly on various devices, including desktops, tablets, and smartphones.
