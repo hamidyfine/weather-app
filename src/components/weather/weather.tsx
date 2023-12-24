@@ -23,7 +23,6 @@ const Weather = ({ weather, user_city }: IProps) => {
     if (!weather) return null;
 
     const forecast = JSON.parse(JSON.stringify(weather.forecast.forecastday));
-    forecast.shift();
 
     const today_condition = conditions.find((condition) => condition.code === weather.current.condition.code);
 

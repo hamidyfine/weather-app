@@ -12,7 +12,6 @@ module.exports = {
         'react-app/jest',
         'plugin:react-hooks/recommended',
         'plugin:json/recommended',
-        'plugin:import/recommended',
         'plugin:import/typescript',
     ],
     rules: {
