@@ -1,5 +1,7 @@
 import { Flex, Text, Tooltip } from '@mantine/core';
-import { Icon } from '..';
+import { Github, Globe, Linkedin } from 'lucide-react';
+
+import { TransMacro } from '../trans';
 
 const Footer = () => {
     return (
@@ -11,7 +13,9 @@ const Footer = () => {
             p="sm"
         >
             <Text size="xs">
+                <TransMacro id="copyright">
                     Developed by Hamid. All rights reserved &#169; 2023.
+                </TransMacro>
             </Text>
 
             <Flex
@@ -21,26 +25,17 @@ const Footer = () => {
             >
                 <Tooltip label="Website">
                     <a href="https://itshamid.me/">
-                        <Icon
-                            icon="IconWorld"
-                            size="18"
-                        />
+                        <Globe size={18} />
                     </a>
                 </Tooltip>
                 <Tooltip label="GitHub">
                     <a href="https://github.com/hamidyfine">
-                        <Icon
-                            icon="IconBrandGithub"
-                            size="18"
-                        />
+                        <Github size={18} />
                     </a>
                 </Tooltip>
                 <Tooltip label="Linkedin">
                     <a href="https://www.linkedin.com/in/hamidyaftian/">
-                        <Icon
-                            icon="IconBrandLinkedin"
-                            size="18"
-                        />
+                        <Linkedin size={18} />
                     </a>
                 </Tooltip>
             </Flex>

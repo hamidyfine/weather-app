@@ -1,5 +1,7 @@
 import { Flex, Title } from '@mantine/core';
 
+import { TransMacro } from '..';
+
 const Header = () => {
     return (
         <header>
@@ -14,7 +16,9 @@ const Header = () => {
                     order={1}
                     size="h2"
                 >
-                    Weather Vibe
+                    <TransMacro id="app_name">
+                        Weather Forecast
+                    </TransMacro>
                 </Title>
             </Flex>
         </header>
