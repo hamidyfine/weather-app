@@ -1,18 +1,20 @@
-# Weather Vibe - Weather Forecast App
+# Weather Forecast App
 
-Weather Vibe is a weather forecast app built with Vite, React, TypeScript, Redux, Tailwind CSS, and Mantine. It provides users with accurate weather information and a delightful user experience. With Weather Vibe, you can stay updated on the weather conditions and plan your activities accordingly.
+Weather Forecast App built with Vite, React, TypeScript, Redux, Tailwind CSS, and Mantine. It provides users with accurate weather information and a delightful user experience. With Weather Forecast App, you can stay updated on the weather conditions and plan your activities accordingly.
 
 ## Installation
 
-To get started with Weather Vibe, follow these simple steps:
+To get started with Weather Forecast App, follow these simple steps:
 
 1. **Clone the repository:**
+
    ```sh
    git clone https://github.com/hamidyfine/weather-app
    cd weather-vibe
    ```
 
 2. **Install dependencies:**
+
    ```sh
    yarn
    ```
@@ -22,15 +24,16 @@ To get started with Weather Vibe, follow these simple steps:
 Once you have installed the dependencies, you can run the app using the following commands:
 
 1. **Start the development server:**
+
    ```sh
    yarn dev
    ```
 
-   This command will start the development server and open the Weather Vibe app in your default web browser. You can see the real-time weather information based on your location or the location you search for.
+   This command will start the development server and open the Weather Forecast App app in your default web browser. You can see the real-time weather information based on your location or the location you search for.
 
 ## Stack
 
-Weather Vibe is built using the following technologies:
+Weather Forecast App is built using the following technologies:
 
 - **Vite:** A fast build tool that significantly improves the frontend development experience.
 - **React:** A popular JavaScript library for building user interfaces.
@@ -43,4 +46,4 @@ Weather Vibe is built using the following technologies:
 
 - **Location-based Forecast:** Get accurate weather forecasts for your current location or any other location you search for.
 - **User-friendly Interface:** The app features an intuitive and user-friendly interface, making it easy for users to access weather information.
-- **Responsive Design:** Weather Vibe is designed to work seamlessly on various devices, including desktops, tablets, and smartphones.
+- **Responsive Design:** Weather Forecast App is designed to work seamlessly on various devices, including desktops, tablets, and smartphones.
