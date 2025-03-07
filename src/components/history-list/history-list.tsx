@@ -55,11 +55,11 @@ const HistoryList = () => {
                                         align="center"
                                         gap="sm"
                                         justify="space-between"
+                                        onClick={() => setCity(city)}
                                     >
                                         <Text
                                             fw="bold"
                                             size="xs"
-                                            onClick={() => setCity(city)}
                                         >
                                             {city}
                                         </Text>
@@ -68,7 +68,7 @@ const HistoryList = () => {
                                             color="red"
                                             size="sm"
                                             onClick={(e) => {
-                                                e.preventDefault();
+                                                e.stopPropagation();
                                                 onHistoryItemDelete(city);
                                             }}
                                         >
