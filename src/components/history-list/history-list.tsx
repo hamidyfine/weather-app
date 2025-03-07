@@ -4,8 +4,6 @@ import { useState } from 'react';
 
 import { useWeatherStore } from '@/stores';
 
-import { TransMacro } from '..';
-
 const HistoryList = () => {
     const [history, setHistory] = useState<string[]>(JSON.parse(localStorage.getItem('history') || '[]'));
     const { setCity } = useWeatherStore();
@@ -27,9 +25,7 @@ const HistoryList = () => {
                 justify="space-between"
             >
                 <span>
-                    <TransMacro id="history">
-                        History
-                    </TransMacro>
+                    History
                 </span>
 
                 <Button
@@ -39,9 +35,7 @@ const HistoryList = () => {
                         setHistory([]);
                     }}
                 >
-                    <TransMacro id="clear_history">
-                        Clear History
-                    </TransMacro>
+                    Clear History
                 </Button>
             </Group>
 
@@ -90,9 +84,7 @@ const HistoryList = () => {
 
             {history && history.length === 0 && (
                 <span className="text-xs rounded-lg border border-gray-200 border-solid p-4 text-center">
-                    <TransMacro id="no_history">
-                        No history found.
-                    </TransMacro>
+                    No history found.
                 </span>
             )}
         </Stack>

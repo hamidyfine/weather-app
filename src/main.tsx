@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { IntlProvider, QueryProvider, RouterProvider, ThemeProvider } from './providers';
+import { QueryProvider, RouterProvider, ThemeProvider } from './providers';
 
 const rootElement = document.getElementById('root') as HTMLElement;
 
@@ -9,13 +9,11 @@ if (!rootElement.innerHTML) {
     const root = createRoot(rootElement);
     root.render(
         <StrictMode>
-            <IntlProvider locale="en">
-                <ThemeProvider>
-                    <QueryProvider>
-                        <RouterProvider />
-                    </QueryProvider>
-                </ThemeProvider>
-            </IntlProvider>
+            <ThemeProvider>
+                <QueryProvider>
+                    <RouterProvider />
+                </QueryProvider>
+            </ThemeProvider>
         </StrictMode>,
     );
 }

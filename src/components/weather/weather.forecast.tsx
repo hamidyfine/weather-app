@@ -8,7 +8,6 @@ import { useNavigate } from '@/router';
 import { useWeatherStore } from '@/stores';
 import type { Forecastday } from '@/types';
 
-import { TransMacro } from '..';
 import { WeatherCurrentForecast } from './current.weather';
 
 export const WeatherForecast = () => {
@@ -61,18 +60,14 @@ export const WeatherForecast = () => {
                         onChange={(value) => setUnit(value)}
                     />
                     <Button onClick={() => getWeather()}>
-                        <TransMacro id="button.refresh">
-                            Refresh
-                        </TransMacro>
+                        Refresh
                     </Button>
                     <Button
                         color="red"
                         variant="light"
                         onClick={() => onBackClicked()}
                     >
-                        <TransMacro id="button.back">
-                            Back
-                        </TransMacro>
+                        Back
                     </Button>
                 </Flex>
             </Flex>

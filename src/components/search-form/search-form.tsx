@@ -6,7 +6,6 @@ import { useGetWeather } from '@/hooks';
 import { useWeatherStore } from '@/stores';
 
 import errorSvg from '../../assets/error.svg';
-import { TransMacro } from '..';
 
 
 const SearchForm = () => {
@@ -60,9 +59,7 @@ const SearchForm = () => {
                         setErrorIsReset(true);
                     }}
                 >
-                    <TransMacro id="search_again">
-                        Search Again
-                    </TransMacro>
+                    Search Again
                 </Button>
             </Flex>
         );
