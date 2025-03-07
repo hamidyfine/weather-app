@@ -2,47 +2,34 @@ import { ActionIcon, Button, Flex, TextInput } from '@mantine/core';
 import { MapPin, Search } from 'lucide-react';
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { useGetWeather } from '@/hooks/use-get-weather';
-import { useNavigate } from '@/router';
+import { useGetWeather } from '@/hooks';
 import { useWeatherStore } from '@/stores';
 
 import errorSvg from '../../assets/error.svg';
 import { TransMacro } from '..';
 
-interface IProps {
-    city: string;
-}
 
-const SearchForm = ({ city }: IProps) => {
+const SearchForm = () => {
     const [query, setQuery] = useState<string>('');
-    const {error, fetch, is_loading, weather} = useGetWeather();
     const [error_is_reset, setErrorIsReset] = useState<boolean>(false);
-    const navigate = useNavigate();
-    const { setCity, setError, setWeather } = useWeatherStore();
+    const { city, setCity, setError, setWeather } = useWeatherStore();
+    const { error, getWeather, is_loading, weather } = useGetWeather();
 
     useEffect(() => {
         if (city) {
-            setQuery(city);
-            setCity(city);
-            fetch(city);
+            getWeather();
         }
-    }, [city, fetch]);
+    }, [city, getWeather]);
 
     useEffect(() => {
-        setErrorIsReset(false);
         if (weather) {
             setWeather(weather);
-            setQuery('');
-            navigate({
-                to: '/dashboard',
-            });
         }
         if (error) {
             setWeather(null);
             setCity('');
-            setError(error);
         }
-    }, [error, navigate, setQuery, weather]);
+    }, [error, weather]);
 
     const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const alphabeticRegex = /^[A-Za-z]+$/;
@@ -66,8 +53,6 @@ const SearchForm = ({ city }: IProps) => {
                     className="w-96 mx-auto"
                     src={errorSvg}
                 />
-
-                <span className="text-2xl font-semibold capitalize p-4">{error}</span>
                 <Button
                     onClick={() => {
                         setError('');
@@ -90,7 +75,6 @@ const SearchForm = ({ city }: IProps) => {
                 e.preventDefault();
                 if (query) {
                     setCity(query);
-                    fetch(query);
                 }
             }}
         >
@@ -117,7 +101,6 @@ const SearchForm = ({ city }: IProps) => {
                         onClick={() => {
                             if (query) {
                                 setCity(query);
-                                fetch(query);
                             }
                         }}
                     >

@@ -1,1 +1,1 @@
-export * from './use-get-user-city';
+export * from './use-get-user-geo-by-ip';

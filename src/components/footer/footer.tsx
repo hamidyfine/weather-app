@@ -1,7 +1,5 @@
-import { Flex, Text, Tooltip } from '@mantine/core';
+import { Flex, Group, Text, Tooltip } from '@mantine/core';
 import { Github, Globe, Linkedin } from 'lucide-react';
-
-import { TransMacro } from '../trans';
 
 const Footer = () => {
     return (
@@ -13,12 +11,10 @@ const Footer = () => {
             p="sm"
         >
             <Text size="xs">
-                <TransMacro id="copyright">
-                    Developed by Hamid. All rights reserved &#169; 2023.
-                </TransMacro>
+                Developed by Hamid. All rights reserved &#169; 2023.
             </Text>
 
-            <Flex
+            <Group
                 align="center"
                 gap="sm"
                 justify="flex-end"
@@ -38,7 +34,7 @@ const Footer = () => {
                         <Linkedin size={18} />
                     </a>
                 </Tooltip>
-            </Flex>
+            </Group>
         </Flex>
     );
 };

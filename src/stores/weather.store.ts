@@ -1,42 +1,62 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from 'zustand';
 
+import type { Weather } from '@/types';
+
 interface WeatherState {
-    city: string;
-    data: any;
+    city: null | string;
     error: string;
-    setCity: (city: string) => void;
+    setCity: (city: null | string, is_user_location?: boolean) => void;
     setError: (error: string) => void;
     setUnit: (unit: string) => void;
-    setWeather: (data: any) => void;
-    unit: string;
-    unit_title: string;
+    setWeather: (data: null | Weather) => void;
+    unit: {
+        slug: string;
+        title: string;
+    };
+    w: {
+        current: any;
+        forecast: any;
+    };
+    weather: null | Weather;
 }
 
 export const useWeatherStore = create<WeatherState>((set) => ({
     city: '',
-    data: null,
     error: '',
-    setCity: (city) => {
-        const history = JSON.parse(localStorage.getItem('history') || '[]');
-        if (!history.includes(city)) {
-            history.push(city);
-        } else {
-            const index = history.indexOf(city);
-            history.splice(index, 1);
-            history.push(city);
+    setCity: (city, is_user_location = false) => {
+        if (!is_user_location) {
+            const history = JSON.parse(localStorage.getItem('history') || '[]');
+            if (!history.includes(city)) {
+                history.push(city);
+            } else {
+                const index = history.indexOf(city);
+                history.splice(index, 1);
+                history.push(city);
+            }
+            localStorage.setItem('history', JSON.stringify(history));
         }
-        localStorage.setItem('history', JSON.stringify(history));
         set(() => ({ city }));
     },
     setError: (error) =>
         set(() => ({ error })),
     setUnit: (unit) =>
-        set(() => ({ unit, unit_title: unit === 'cen' ? '°C' : '°F' })),
-    setWeather: (data) =>
-        set(() => ({ data })),
-    unit: 'cen',
-    unit_title: '°C',
+        set(() => ({
+            unit: {
+                slug: unit,
+                title: unit === 'cen' ? '°C' : '°F',
+            } })),
+    setWeather: (weather) =>
+        set(() => ({ weather })),
+    unit: {
+        slug: 'cen',
+        title: '°C',
+    },
+    w: {
+        current: '',
+        forecast: '',
+    },
+    weather: null,
 }));
 
 export default useWeatherStore;

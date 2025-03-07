@@ -1,45 +1,60 @@
-import { Flex } from '@mantine/core';
+import { Button, Stack } from '@mantine/core';
 import { LocateFixed } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-import { HistoryList, SearchForm, TransMacro } from '@/components';
-import { useGetUserCity } from '@/hooks';
-import { createFileRoute } from '@/router';
+import HomeSvg from '@/assets/home.svg';
+import { HistoryList, SearchForm } from '@/components';
+import { useGetUserGeoByIp } from '@/hooks';
+import { createFileRoute, useNavigate } from '@/router';
+import { useWeatherStore } from '@/stores';
 
 export const Route = createFileRoute('/')({
     component: Home,
 });
 
 function Home() {
-    const [city, setCity] = useState<string>('');
-    const { user_city } = useGetUserCity();
+    const { setCity, weather } = useWeatherStore();
+    const { geo } = useGetUserGeoByIp();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (weather) {
+            navigate({
+                to: '/dashboard',
+            });
+        } else {
+            navigate({
+                to: '/',
+            });
+        }
+    }, [weather]);
 
     return (
-        <Flex
+        <Stack
             align="center"
             className="w-full"
-            direction="column"
             gap="md"
             justify="center"
         >
-            <SearchForm city={city} />
+            <img
+                className="h-[350px]"
+                src={HomeSvg}
+            />
+            <SearchForm />
 
-            <Flex
-                align="center"
-                className="text-xs text-neutral-500 rounded-full border border-zinc-200 border-solid px-2 py-1 capitalize cursor-pointer hover:border-blue-500 hover:text-blue-500"
-                gap="xs"
-                justify="center"
-                onClick={() => setCity(user_city)}
+            <Button
+                color="gray"
+                disabled={!geo}
+                leftSection={<LocateFixed size={14} />}
+                radius="xl"
+                size="xs"
+                variant="outline"
+                onClick={() => setCity(`${geo?.lat},${geo?.lon}`, true)}
             >
-                <LocateFixed size={14} />
-                <span>
-                    <TransMacro id="use_current_location">
-                        Use my current location
-                    </TransMacro>
-                </span>
-            </Flex>
+                {`Use my current location (${geo?.city})`}
+            </Button>
 
-            <HistoryList setHistoryCity={setCity} />
-        </Flex>
+            <HistoryList />
+        </Stack>
     );
 }

@@ -1,11 +1,9 @@
-import { Flex, Title } from '@mantine/core';
-
-import { TransMacro } from '..';
+import { Group, Title } from '@mantine/core';
 
 const Header = () => {
     return (
         <header>
-            <Flex
+            <Group
                 align="center"
                 gap="xl"
                 justify="center"
@@ -16,11 +14,9 @@ const Header = () => {
                     order={1}
                     size="h2"
                 >
-                    <TransMacro id="app_name">
-                        Weather Forecast
-                    </TransMacro>
+                    Weather Forecast
                 </Title>
-            </Flex>
+            </Group>
         </header>
     );
 };

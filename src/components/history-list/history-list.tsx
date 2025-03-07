@@ -1,23 +1,14 @@
-import { ActionIcon, Button, Flex } from '@mantine/core';
+import { ActionIcon, Button, Group, ScrollArea, Stack, Text } from '@mantine/core';
 import { Trash2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import { useWeatherStore } from '@/stores';
 
 import { TransMacro } from '..';
 
-interface IProps {
-    setHistoryCity: (city: string) => void;
-}
-
-const HistoryList = ({ setHistoryCity }: IProps) => {
+const HistoryList = () => {
     const [history, setHistory] = useState<string[]>(JSON.parse(localStorage.getItem('history') || '[]'));
-    const [last_cities, setLastCities] = useState<string[]>([]);
-
-    useEffect(() => {
-        /**
-         * Set the last 3 cities from the history
-         */
-        setLastCities(() => history.slice(-3));
-    }, [history]);
+    const { setCity } = useWeatherStore();
 
     const onHistoryItemDelete = (city: string) => {
         const newHistory = history.filter((c) => c !== city).filter(Boolean);
@@ -26,12 +17,11 @@ const HistoryList = ({ setHistoryCity }: IProps) => {
     };
 
     return (
-        <Flex
-            direction="column"
+        <Stack
             gap="sm"
             w={{ base: '100%', sm: '400px' }}
         >
-            <Flex
+            <Group
                 align="center"
                 gap="md"
                 justify="space-between"
@@ -50,44 +40,52 @@ const HistoryList = ({ setHistoryCity }: IProps) => {
                     }}
                 >
                     <TransMacro id="clear_history">
-                        Search Again
+                        Clear History
                     </TransMacro>
                 </Button>
-            </Flex>
+            </Group>
 
             {history && history.length > 0 && (
-                <ul className="m-0 p-0 list-none">
-                    {last_cities && last_cities.length > 0 && last_cities.reverse().map((city: string, index: number) => (
-                        <li
-                            key={index}
-                            className="capitalize mb-2 cursor-pointer hover:border-blue-500 rounded-lg hover:text-blue-500 block p-2 text-xs font-semibold border border-solid border-gray-200"
-                        >
-                            <Flex
-                                align="center"
-                                gap="sm"
-                                justify="space-between"
-                            >
-                                <span
-                                    className="flex-grow"
-                                    onClick={() => setHistoryCity(city)}
+                <ScrollArea h="200px">
+                    <ul className="m-0 p-0 list-none">
+                        {history && history.length > 0 && history.reverse().map((city: string, index: number) => {
+                            if (!city) {
+                                return null;
+                            }
+                            return (
+                                <li
+                                    key={index}
+                                    className="capitalize mb-2 cursor-pointer hover:border-blue-500 rounded-lg hover:text-blue-500 block p-2 text-xs font-semibold border border-solid border-gray-200"
                                 >
-                                    {city}
-                                </span>
+                                    <Group
+                                        align="center"
+                                        gap="sm"
+                                        justify="space-between"
+                                    >
+                                        <Text
+                                            fw="bold"
+                                            size="xs"
+                                            onClick={() => setCity(city)}
+                                        >
+                                            {city}
+                                        </Text>
 
-                                <ActionIcon
-                                    color="red"
-                                    size="sm"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        onHistoryItemDelete(city);
-                                    }}
-                                >
-                                    <Trash2 size={14} />
-                                </ActionIcon>
-                            </Flex>
-                        </li>
-                    ))}
-                </ul>
+                                        <ActionIcon
+                                            color="red"
+                                            size="sm"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                onHistoryItemDelete(city);
+                                            }}
+                                        >
+                                            <Trash2 size={14} />
+                                        </ActionIcon>
+                                    </Group>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </ScrollArea>
             )}
 
             {history && history.length === 0 && (
@@ -97,7 +95,7 @@ const HistoryList = ({ setHistoryCity }: IProps) => {
                     </TransMacro>
                 </span>
             )}
-        </Flex>
+        </Stack>
     );
 };
 
